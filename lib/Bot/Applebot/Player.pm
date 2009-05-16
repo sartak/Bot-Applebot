@@ -51,6 +51,8 @@ sub card_index {
     my $idx = 1 + firstidx { $_ eq $name } $self->noun_cards;
     return $idx if $idx;
 
+    return 0 if Bot::Applebot::forbid('floating_adjectives');
+
     # You get only one use of <adj>
     return 0 if $name =~ /<adj>.*<adj>/;
 
