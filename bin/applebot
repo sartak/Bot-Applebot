@@ -1,0 +1,14 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+use Bot::Applebot;
+
+my $applebot = Bot::Applebot->new(
+    server    => 'irc.foo.net',
+    port      => 6667,
+    channels  => ["#apples2apples"],
+    nick      => "Applebot",
+);
+
+$applebot->run;
+
