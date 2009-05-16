@@ -193,7 +193,13 @@ has adjective_card => (
 
 sub channel { (shift->channels)[0] }
 
-sub adj { String::IRC->new(shift)->bold->green }
+sub color {
+    return if forbid("color");
+    my ($string, $color) = @_;
+    return '' . String::IRC->new($string)->$color;
+}
+
+sub adj { color($_[0], 'light_green') }
 
 around draw_adjective_card => sub {
     my $orig = shift;
@@ -215,7 +221,7 @@ around draw_adjective_card => sub {
     my $adjective = $orig->($self, @_);
 
     if ($adjective eq 'Bold') {
-        $adjective = String::IRC->new($adjective)->bold;
+        $adjective = color($adjective, 'bold');
     }
 
     $adjective =~ s{<player>}{(shuffle $self->player_names)[0]}eg;
@@ -454,7 +460,7 @@ sub tick {
                         . " card"
                         . ($singular ? "" : "s")
                         . " from: "
-                        . String::IRC->new($self->waiting_on)->bold->yellow);
+                        . color($self->waiting_on, 'yellow'));
                 }
             }
         }
@@ -468,7 +474,7 @@ sub tick {
             else {
                 $self->announce(
                     "Still waiting on a judgment from "
-                    . String::IRC->new($self->judge)->bold->yellow
+                    . color($self->judge, 'yellow')
                     . "."
                 );
             }
@@ -780,7 +786,7 @@ sub decide_winner {
     my $decree = sprintf q{%s has decreed the winner to be %s's "%s"!},
         $self->judge,
         $winner->name,
-        String::IRC->new($card)->cyan;
+        color($card, 'cyan');
 
     $self->announce($decree);
 
