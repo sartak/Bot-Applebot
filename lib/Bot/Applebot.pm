@@ -828,7 +828,7 @@ sub tweet {
     my $self = shift;
     my $tweet = shift;
 
-    eval {
+    if (conf->{twitter}) {
         require Net::Twitter;
 
         open my $handle, '<', 'twitter-password' or die "Unable to read twitter-password: $!";
@@ -836,19 +836,20 @@ sub tweet {
         chomp $password;
 
         my $twitter = Net::Twitter->new(
-            username => 'Name',
-            password => $password,
+            username => conf->{twitter}{username},
+            password => conf->{twitter}{password},
             useragent_args => {
                 timeout => 5,
             },
         );
-        my $result = $twitter->update($tweet);
+
+        my $result = eval { $twitter->update($tweet) };
+
         if (!defined($result)) {
             use Data::Dumper;
-            die Dumper($twitter->get_error);
+            warn $@ ? $@ : Dumper($twitter->get_error);
         }
-    };
-    warn $@ if $tweet_warned++ == 0 && $@;
+    }
 }
 
 # I don't use make_immutable or no Moose here because I like adding stuff at
