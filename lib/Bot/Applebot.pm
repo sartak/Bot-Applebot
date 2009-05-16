@@ -335,7 +335,7 @@ sub play_said {
         return $self->deactivate_player($player);
     }
 
-    if (isroman($text) && $nick eq 'Ceciltron') {
+    if (conf->{roman} && conf->{roman}{$nick} && isroman($text)) {
         $text = arabic($text);
     }
 
@@ -634,7 +634,7 @@ sub begin_judging {
 
         ++$i;
 
-        if ($self->judge eq 'Ceciltron') {
+        if (conf->{roman} && conf->{roman}{$judge}) {
             $self->announce(uc(roman($i)) . ": $card");
         }
         else {
