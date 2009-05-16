@@ -57,7 +57,7 @@ sub card_index {
     # Don't make it too easy to inject an obnoxious amount of space
     return 0 if $name =~ /\s\s/;
 
-    # Jesse "My Nigga" Jackson
+    # "Visionary" Bumper Stickers
     $name =~ s/"<adj>"/<adj>/g;
 
     # You get to put one <adj> wherever you want
