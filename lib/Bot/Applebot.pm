@@ -799,3 +799,25 @@ sub tweet {
 
 1;
 
+__END__
+
+=head1 NAME
+
+Bot::Applebot - Plays the card/word game Apples to Apples
+
+=head1 SYNOPSIS
+
+    #!/usr/bin/env perl
+    use Bot::Applebot;
+    Bot::Applebot->new(
+        server    => 'irc.foo.net',
+        channels  => ["#apples2apples"],
+        nick      => "Applebot",
+    )->run;
+
+=head1 AUTHOR
+
+Shawn M Moore, C<sartak@gmail.com>
+
+=cut
+
