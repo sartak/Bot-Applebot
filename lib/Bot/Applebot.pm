@@ -28,6 +28,11 @@ do {
     }
 };
 
+sub forbid {
+    my $forbid = conf->{forbid} or return 0;
+    return grep { conf->{forbid}{$_} } @_;
+}
+
 has wait_announce => (
     is      => 'rw',
     isa     => 'Int',
@@ -196,11 +201,11 @@ around draw_adjective_card => sub {
     my $forbid_special = shift;
 
     unless ($forbid_special) {
-        if (rand(50) < 1) {
+        if (!forbid('secret_adjectives') && rand(50) < 1) {
             return '(a secret)';
         }
 
-        if (rand(50) < 1) {
+        if (!forbid('blank_adjectives') && rand(50) < 1) {
             return 'BLANK';
         }
     }
@@ -225,7 +230,7 @@ around draw_noun_card => sub {
     my $forbid_special = shift;
 
     unless ($forbid_special) {
-        if (rand(100) < 1) {
+        if (!forbid('blank_nouns') && rand(100) < 1) {
             return 'BLANK';
         }
     }
