@@ -865,13 +865,17 @@ Bot::Applebot - Arbiter of the word card-based game Apples to Apples
 
 =head1 SYNOPSIS
 
-    Edit ~/.applebotrc:
+    1. Edit ~/.applebotrc:
 
     ---
     server:   irc.foo.net
     port:     6667
     channels: ["#apples2apples"]
     nick:     Applebot
+
+    2. Run `applebot`
+
+    3. Enjoy
 
 =head1 AUTHOR
 
