@@ -157,7 +157,7 @@ has noun_cards => (
     },
     default => sub { [ shuffle(
         io(dist_file('Bot-Applebot', 'nouns.txt'))->chomp->slurp,
-        io('nouns-ex.txt')->chomp->slurp,
+        eval { io(conf->{aux}{nouns})->chomp->slurp },
     )]},
     lazy    => 1,
 );
@@ -173,7 +173,7 @@ has adjective_cards => (
     },
     default => sub { [ shuffle(
         io(dist_file('Bot-Applebot', 'adjectives.txt'))->chomp->slurp,
-        io('adjectives-ex.txt')->chomp->slurp,
+        eval { io(conf->{aux}{adjectives})->chomp->slurp },
     )]},
     lazy    => 1,
 );
