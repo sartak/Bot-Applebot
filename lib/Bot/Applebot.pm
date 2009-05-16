@@ -789,7 +789,7 @@ __END__
 
 =head1 NAME
 
-Bot::Applebot - Plays the card/word game Apples to Apples
+Bot::Applebot - Plays the word card-based game Apples to Apples
 
 =head1 SYNOPSIS
 
