@@ -842,10 +842,6 @@ sub tweet {
     if (conf->{twitter}) {
         require Net::Twitter;
 
-        open my $handle, '<', 'twitter-password' or die "Unable to read twitter-password: $!";
-        my $password = <$handle>;
-        chomp $password;
-
         my $twitter = Net::Twitter->new(
             username => conf->{twitter}{username},
             password => conf->{twitter}{password},
