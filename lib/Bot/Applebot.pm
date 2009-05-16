@@ -19,7 +19,7 @@ do {
     my $conf;
     sub conf {
         if (!$conf) {
-            $conf = LoadFile("$ENV{HOME}/.applebotrc");
+            $conf = LoadFile($ENV{APPLEBOT} || "$ENV{HOME}/.applebotrc");
         }
 
         return $conf->{$_[0]} if @_;
