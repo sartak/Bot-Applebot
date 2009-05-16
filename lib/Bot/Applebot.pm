@@ -294,7 +294,7 @@ sub init_said {
 
         $self->end_score($end_score) if $end_score;
         $self->game_state('playing');
-        return $self->announce("Apples to Apples is starting! Players: " . join(', ', $self->player_names) . ".");
+        return $self->announce("Apples to Apples is starting! Players: " . join(', ', $self->player_names) . ". Playing until " . $self->end_score . " points.");
     }
 
     return;
