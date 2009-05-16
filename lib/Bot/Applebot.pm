@@ -611,20 +611,6 @@ sub finalize_played_cards {
     $self->played_cards([shuffle @cards]);
 }
 
-sub AUTOLOAD {
-    our $AUTOLOAD;
-    Carp::carp "AUTOLOAD triggered for $AUTOLOAD";
-}
-
-# the one AUTOLOAD that we need
-sub names {
-    my $self = shift;
-    no warnings 'once';
-    $Bot::BasicBot::poe_kernel->post( $self->{IRCNAME}, 'names', $self->charset_encode(@_) );
-}
-
-sub DESTROY {}
-
 sub give_cards {
     my $self = shift;
     my $player = shift;
