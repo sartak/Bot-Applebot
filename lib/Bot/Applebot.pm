@@ -864,13 +864,13 @@ Bot::Applebot - Arbiter of the word card-based game Apples to Apples
 
 =head1 SYNOPSIS
 
-    #!/usr/bin/env perl
-    use Bot::Applebot;
-    Bot::Applebot->new(
-        server    => 'irc.foo.net',
-        channels  => ["#apples2apples"],
-        nick      => "Applebot",
-    )->run;
+    Edit ~/.applebotrc:
+
+    ---
+    server:   irc.foo.net
+    port:     6667
+    channels: ["#apples2apples"]
+    nick:     Applebot
 
 =head1 AUTHOR
 

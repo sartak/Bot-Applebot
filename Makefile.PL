@@ -12,6 +12,7 @@ requires 'String::IRC';
 requires 'Lingua::EN::Inflect';
 requires 'Roman';
 requires 'File::ShareDir';
+requires 'YAML';
 
 recommends 'Net::Twitter';
 
