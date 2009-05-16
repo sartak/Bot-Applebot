@@ -11,6 +11,7 @@ requires 'IO::All';
 requires 'String::IRC';
 requires 'Lingua::EN::Inflect';
 requires 'Roman';
+requires 'File::ShareDir';
 
 recommends 'Net::Twitter';
 

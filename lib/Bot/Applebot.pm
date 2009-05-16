@@ -8,6 +8,7 @@ use IO::All;
 use String::IRC;
 use Lingua::EN::Inflect 'AN';
 use Roman qw/roman arabic isroman/;
+use File::ShareDir 'dist_file';
 
 use Bot::Applebot::Player;
 
@@ -141,7 +142,7 @@ has noun_cards => (
         empty => 'has_noun_cards',
     },
     default => sub { [ shuffle(
-        io('nouns.txt')->chomp->slurp,
+        io(dist_file('Bot-Applebot', 'nouns.txt'))->chomp->slurp,
         io('nouns-ex.txt')->chomp->slurp,
     )]},
     lazy    => 1,
@@ -157,7 +158,7 @@ has adjective_cards => (
         empty => 'has_adjective_cards',
     },
     default => sub { [ shuffle(
-        io('adjectives.txt')->chomp->slurp,
+        io(dist_file('Bot-Applebot', 'adjectives.txt'))->chomp->slurp,
         io('adjectives-ex.txt')->chomp->slurp,
     )]},
     lazy    => 1,
