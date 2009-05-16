@@ -194,8 +194,8 @@ has adjective_card => (
 sub channel { (shift->channels)[0] }
 
 sub color {
-    return if forbid("color");
     my ($string, $color) = @_;
+    return $_[0] if forbid("color");
     return '' . String::IRC->new($string)->$color;
 }
 
