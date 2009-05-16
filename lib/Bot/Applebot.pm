@@ -513,7 +513,7 @@ sub begin_round {
 
     $self->announce($self->judge . " draws a green card and it's... " . adj($self->adjective_card) . "!");
     $self->announce("The actual adjective will be revealed when judging begins.") if $self->adjective_card eq '(a secret)';
-    $self->announce($self->judge . ": You may select the adjective by saying !select ADJECTIVE. For example, !select " . $self->draw_adjective_card(1)) if $self->adjective_card eq 'BLANK';
+    $self->announce($self->judge . ": You may select the adjective by saying !blank ADJECTIVE. For example, !blank " . $self->draw_adjective_card(1)) if $self->adjective_card eq 'BLANK';
 
      return;
 }
