@@ -785,7 +785,7 @@ sub decide_winner {
 
     my $decree = sprintf q{%s has decreed the winner to be %s's "%s"!},
         $self->judge,
-        $winner->name,
+        color($winner->name, 'red'),
         color($card, 'cyan');
 
     $self->announce($decree);
