@@ -247,7 +247,7 @@ sub said {
     my $text = $args->{body};
     my $chan = $args->{channel};
 
-    if ($nick eq 'Sartak' && $ENV{USER} eq 'sartak' && $text =~ /^!eval (.+)/) {
+    if ($nick eq conf->{owner} && $text =~ /^!eval (.+)/) {
         my $ret = eval $1;
         return $@ if $@;
         return $ret;
