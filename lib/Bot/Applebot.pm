@@ -195,7 +195,7 @@ sub channel { (shift->channels)[0] }
 
 sub color {
     my ($string, $color) = @_;
-    return $_[0] if forbid("color");
+    return $string if forbid("color");
     return String::IRC->new($string)->$color;
 }
 
