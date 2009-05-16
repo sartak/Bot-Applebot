@@ -9,10 +9,24 @@ use String::IRC;
 use Lingua::EN::Inflect 'AN';
 use Roman qw/roman arabic isroman/;
 use File::ShareDir 'dist_file';
+use YAML 'LoadFile';
 
 use Bot::Applebot::Player;
 
 extends 'Bot::BasicBot';
+
+do {
+    my $conf;
+    sub conf {
+        if (!$conf) {
+            $conf = LoadFile("$ENV{HOME}/.applebotrc");
+        }
+
+        return $conf->{$_[0]} if @_;
+
+        return wantarray ? %$conf : $conf;
+    }
+};
 
 has wait_announce => (
     is      => 'rw',
