@@ -434,7 +434,60 @@ sub tick {
                         . " card"
                         . ($singular ? "" : "s")
                         . " from: "
-                        . !blank ADJECTIVE. For example, !blank " . $self->draw_adjective_card(1)) if $self->adjective_card eq 'BLANK';
+                        . String::IRC->new($self->waiting_on)->bold->yellow);
+                }
+            }
+        }
+    }
+    elsif ($self->game_state eq 'judging') {
+        $self->wait_announce($self->wait_announce + 1);
+        if ($self->wait_announce > 0 && $self->wait_announce % 30 == 29) {
+            if ($self->wait_announce > 80) {
+                $self->deactivate_player($self->judge);
+            }
+            else {
+                $self->announce(
+                    "Still waiting on a judgment from "
+                    . String::IRC->new($self->judge)->bold->yellow
+                    . "."
+                );
+            }
+        }
+    }
+
+    return 2; # seconds til next tick
+}
+
+sub begin_round {
+    my $self = shift;
+    $self->round_is_beginning(0);
+
+    for my $name (uniq $self->deferred_players) {
+        my $player = $self->delete_inactive_player($name) || Applebot::Player->new(name => $name);
+        $self->add_player($name => $player);
+        $self->give_cards($player);
+        push @{ $self->shuffled_players }, $player;
+    }
+    $self->clear_deferred_players;
+
+    $self->choose_judge;
+    $self->clear_adjective_card;
+    $self->clear_played_cards;
+
+    $self->reset_wait_announce;
+
+    $self->announce("The judge is now " . $self->judge . "! Now hold on for a minute while I tell everyone their cards.");
+
+    for my $player ($self->players) {
+        next if $self->is_judge($player);
+        my $cards = $player->cards;
+        my $blank = $cards =~ /BLANK/ ? "To play your BLANK, PM me !blank Whatever" : '';
+        $self->pm($player->name => "Your cards are: $cards. $blank");
+    }
+
+    $self->announce($self->judge . " draws a green card and it's... " . adj($self->adjective_card) . "!");
+    $self->announce("The actual adjective will be revealed when judging begins.") if $self->adjective_card eq '(a secret)';
+    $self->announce($self->judge . ": You may select the adjective by saying !select ADJECTIVE. For example, !select " . $self->draw_adjective_card(1)) if $self->adjective_card eq 'BLANK';
 
      return;
 }
