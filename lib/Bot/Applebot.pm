@@ -160,7 +160,7 @@ has noun_cards => (
         shift => 'draw_noun_card',
         empty => 'has_noun_cards',
     },
-    default => sub { [ shuffle(
+    default => sub { [ grep { /\S/ } shuffle(
         io(dist_file('Bot-Applebot', 'nouns.txt'))->chomp->slurp,
         eval { io(conf->{aux}{nouns})->chomp->slurp },
     )]},
@@ -176,7 +176,7 @@ has adjective_cards => (
         shift => 'draw_adjective_card',
         empty => 'has_adjective_cards',
     },
-    default => sub { [ shuffle(
+    default => sub { [ grep { /\S/ } shuffle(
         io(dist_file('Bot-Applebot', 'adjectives.txt'))->chomp->slurp,
         eval { io(conf->{aux}{adjectives})->chomp->slurp },
     )]},
