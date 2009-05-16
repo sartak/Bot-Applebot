@@ -783,6 +783,9 @@ sub tweet {
     warn $@ if $tweet_warned++ == 0 && $@;
 }
 
+# I don't use make_immutable or no Moose here because I like adding stuff at
+# runtime with !eval
+
 1;
 
 __END__
