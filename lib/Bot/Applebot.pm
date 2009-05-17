@@ -489,7 +489,7 @@ sub begin_round {
     $self->round_is_beginning(0);
 
     for my $name (uniq $self->deferred_players) {
-        my $player = $self->delete_inactive_player($name) || Applebot::Player->new(name => $name);
+        my $player = $self->delete_inactive_player($name) || Bot::Applebot::Player->new(name => $name);
         $self->add_player($name => $player);
         $self->give_cards($player);
         push @{ $self->shuffled_players }, $player;
