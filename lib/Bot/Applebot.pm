@@ -757,7 +757,7 @@ sub deactivate_player {
     if ($self->is_judge($player)) {
         if ($self->state eq 'judging') {
             $self->announce($player->name . " is a jerk for abandoning the game while judging. Guess I'll roll a die...");
-            $self->judge("Applebot");
+            $self->judge($self->nick);
             $self->decide_winner(int rand @{ $self->played_cards });
         }
         else {
