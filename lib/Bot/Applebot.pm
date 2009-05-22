@@ -880,6 +880,19 @@ Bot::Applebot - Arbiter of the word card-based game Apples to Apples
     channels: ["#apples2apples"]
     nick:     Applebot
 
+    # additional word files for you and yours
+    aux:
+        adjectives: /home/you/.applebot/adjectives-ex.txt
+        nouns: /home/home/.applebot/nouns-ex.txt
+
+    # turn off features you don't like
+    forbid:
+        color: 0
+        secret_adjectives: 0
+        blank_adjectives: 0
+        blank_nouns: 0
+        floating_adjectives: 0
+
     2. Run `applebot`
 
     3. Enjoy
