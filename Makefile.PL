@@ -2,6 +2,7 @@ use inc::Module::Install;
 
 name     'Bot-Applebot';
 all_from 'lib/Bot/Applebot.pm';
+githubmeta;
 
 requires 'Moose';
 requires 'MooseX::AttributeHelpers';
