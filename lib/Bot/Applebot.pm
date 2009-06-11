@@ -15,7 +15,7 @@ use Bot::Applebot::Player;
 
 extends 'Bot::BasicBot';
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 do {
     my $conf;
