@@ -874,7 +874,7 @@ Bot::Applebot - Arbiter of the word card-based game Apples to Apples
 
 =head1 SYNOPSIS
 
-    1. Edit ~/.applebotrc:
+    1. Edit ~/.applebotrc (it's YAML)
 
     ---
     server:   irc.foo.net
@@ -882,7 +882,7 @@ Bot::Applebot - Arbiter of the word card-based game Apples to Apples
     channels: ["#apples2apples"]
     nick:     Applebot
 
-    # additional word files for you and yours
+    # additional word files for you and yours, one per line
     aux:
         adjectives: /home/you/.applebot/adjectives-ex.txt
         nouns: /home/home/.applebot/nouns-ex.txt
@@ -897,7 +897,7 @@ Bot::Applebot - Arbiter of the word card-based game Apples to Apples
 
     2. Run `applebot`
 
-    3. Enjoy
+    3. Pick good words
 
 =head1 AUTHOR
 
