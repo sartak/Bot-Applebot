@@ -193,6 +193,18 @@ has adjective_card => (
     clearer => 'clear_adjective_card',
 );
 
+has streak_winner => (
+    is      => 'rw',
+    isa     => 'Str',
+);
+
+has streak_score => (
+    is      => 'rw',
+    isa     => 'Int',
+    default => 0,
+    clearer => 'reset_streak_score',
+);
+
 sub channel { (shift->channels)[0] }
 
 sub color {
@@ -798,6 +810,15 @@ sub decide_winner {
         color($card, 'cyan');
 
     $self->announce($decree);
+
+    if ($self->streak_winner eq $winner) {
+        $self->streak_score($self->streak_score + 1);
+        $self->announce("That's " . color($self->streak_score, "red") . " in a row for $winner!");
+    }
+    else {
+        $self->reset_streak_score;
+        $self->clear_streak_winner;
+    }
 
     $winner->add_adjective_card($self->adjective_card);
     if ($winner->score >= $self->end_score) {
