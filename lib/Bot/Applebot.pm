@@ -814,7 +814,7 @@ sub decide_winner {
 
     $self->announce($decree);
 
-    if ($self->streak_winner eq $winner) {
+    if ($self->streak_winner eq "$winner") {
         $self->streak_score($self->streak_score + 1);
         $self->announce("That's " . color($self->streak_score, "red") . " in a row for $winner!");
     }
