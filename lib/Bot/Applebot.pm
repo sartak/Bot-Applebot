@@ -584,6 +584,7 @@ sub judge_player {
 
 sub waiting_on {
     my $self = shift;
+    my $transform = shift;
 
     my @players;
 
@@ -596,8 +597,14 @@ sub waiting_on {
                    $self->players;
     }
 
-    return @players if wantarray;
-    return join ', ', map { $_->name } @players;
+    if (wantarray) {
+        @players = map { $transform->($_) } @players if $transform;
+        return @players;
+    }
+
+    @players = map { $_->name } @players;
+    @players = map { $transform->($_) } @players if $transform;
+    return join ', ', @players;
 }
 
 sub give_card {
