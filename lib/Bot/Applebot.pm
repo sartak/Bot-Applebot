@@ -814,13 +814,16 @@ sub decide_winner {
 
     $self->announce($decree);
 
-    if ($self->streak_winner eq "$winner") {
-        $self->streak_score($self->streak_score + 1);
-        $self->announce("That's " . color($self->streak_score, "red") . " in a row for $winner!");
-    }
-    else {
-        $self->streak_score(1);
-        $self->streak_winner("$winner");
+    do {
+        no warnings 'uninitialized';
+        if ($self->streak_winner eq "$winner") {
+            $self->streak_score($self->streak_score + 1);
+            $self->announce("That's " . color($self->streak_score, "red") . " in a row for $winner!");
+        }
+        else {
+            $self->streak_score(1);
+            $self->streak_winner("$winner");
+        }
     }
 
     $winner->add_adjective_card($self->adjective_card);
