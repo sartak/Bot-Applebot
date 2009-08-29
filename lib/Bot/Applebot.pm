@@ -820,7 +820,7 @@ sub decide_winner {
     }
     else {
         $self->reset_streak_score;
-        $self->clear_streak_winner;
+        $self->streak_winner("$winner");
     }
 
     $winner->add_adjective_card($self->adjective_card);
