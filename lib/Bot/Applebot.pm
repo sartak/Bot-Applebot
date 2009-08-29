@@ -462,6 +462,7 @@ sub tick {
                 }
                 else {
                     my @waiting_on = $self->waiting_on(sub { color($_, 'yellow') });
+                    my $waiting_on = $self->waiting_on(sub { color($_, 'yellow') });
                     my $singular = @waiting_on == 1;
 
                     my $an = lc AN($self->adjective_card);
@@ -474,7 +475,7 @@ sub tick {
                         . " card"
                         . ($singular ? "" : "s")
                         . " from: "
-                        . join ', ', @waiting_on);
+                        . $waiting_on);
                 }
             }
         }
