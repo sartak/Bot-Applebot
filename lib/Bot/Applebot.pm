@@ -196,6 +196,7 @@ has adjective_card => (
 has streak_winner => (
     is      => 'rw',
     isa     => 'Str',
+    clearer => 'clear_streak_winner',
 );
 
 has streak_score => (
