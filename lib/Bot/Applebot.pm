@@ -517,7 +517,7 @@ sub begin_round {
 
     $self->reset_wait_announce;
 
-    $self->announce("The judge is now " . $self->judge . "! Now hold on for a minute while I tell everyone their cards.");
+    $self->announce("The judge is now " . color($self->judge, 'yellow') . "! Now hold on for a minute while I tell everyone their cards.");
 
     for my $player ($self->players) {
         next if $self->is_judge($player);
