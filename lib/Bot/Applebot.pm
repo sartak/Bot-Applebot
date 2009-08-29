@@ -819,7 +819,7 @@ sub decide_winner {
         $self->announce("That's " . color($self->streak_score, "red") . " in a row for $winner!");
     }
     else {
-        $self->reset_streak_score;
+        $self->streak_score(1);
         $self->streak_winner("$winner");
     }
 
