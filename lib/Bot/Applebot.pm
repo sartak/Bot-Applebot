@@ -644,7 +644,7 @@ sub begin_judging {
 
     $self->finalize_played_cards;
 
-    $self->announce("Everyone is done playing. $judge, it's time to judge some $adjective cards.");
+    $self->announce("Everyone is done playing. $judge, it's time to judge some ".adj($adjective)." cards.");
 
     my $i = 0;
     for ($self->played_cards) {
