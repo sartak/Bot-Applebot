@@ -209,6 +209,7 @@ sub channel { (shift->channels)[0] }
 
 sub color {
     my ($string, $color) = @_;
+    Carp::cluck("Too many arguments" if @_ > 2;
     return $string if forbid("color");
     return String::IRC->new($string)->$color;
 }
