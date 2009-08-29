@@ -455,6 +455,8 @@ sub tick {
                     my $an = lc AN($self->adjective_card);
                     $an =~ s/ .*//; # strip adjective
 
+                    my $waiting_on = join ', ', map { color($_, 'yellow') } @waiting_on;
+
                     $self->announce(
                         "Still waiting on "
                         . ($singular ? "$an " : "")
@@ -462,7 +464,7 @@ sub tick {
                         . " card"
                         . ($singular ? "" : "s")
                         . " from: "
-                        . color($self->waiting_on, 'yellow'));
+                        . $waiting_on);
                 }
             }
         }
