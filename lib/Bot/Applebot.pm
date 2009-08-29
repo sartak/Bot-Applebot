@@ -805,7 +805,7 @@ sub decide_winner {
 
     $card = $self->format_card($self->adjective_card, $card);
 
-    my $decree = sprintf q{%s has decreed the winner to be %s's "%s"!},
+    my $decree = sprintf q{%s has chosen %s's "%s"!},
         $self->judge,
         color($winner->name, 'red'),
         color($card, 'cyan');
