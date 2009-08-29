@@ -209,9 +209,9 @@ sub channel { (shift->channels)[0] }
 
 sub color {
     my ($string, $color) = @_;
-    Carp::cluck("Too many arguments" if @_ > 2;
+    Carp::cluck("Too many arguments") if @_ > 2;
     return $string if forbid("color");
-    return String::IRC->new($string)->$color;
+    return eval { String::IRC->new($string)->$color } || $string;
 }
 
 sub adj { color($_[0], 'light_green') }
