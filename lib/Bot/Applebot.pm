@@ -1,4 +1,5 @@
 package Bot::Applebot;
+use 5.008001;
 use Moose;
 use Moose::Util::TypeConstraints 'enum';
 use MooseX::AttributeHelpers;
