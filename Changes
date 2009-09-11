@@ -6,3 +6,4 @@ Revision history for Bot-Applebot
         Streak tracking
         Color the judge in the long judge message
         Fix some warnings
+        Fix distribution packaging issue
