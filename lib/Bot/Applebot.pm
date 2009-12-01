@@ -825,7 +825,7 @@ sub decide_winner {
             $self->streak_score(1);
             $self->streak_winner("$winner");
         }
-    }
+    };
 
     $winner->add_adjective_card($self->adjective_card);
     if ($winner->score >= $self->end_score) {
