@@ -896,6 +896,13 @@ sub tweet {
     }
 }
 
+after delete_player => sub {
+    my $self = shift;
+    my $player = shift;
+
+    $self->shuffled_players([grep { $_->name ne $player }] $self->shuffled_players]);
+};
+
 # I don't use make_immutable or no Moose here because I like adding stuff at
 # runtime with !eval
 
